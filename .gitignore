@@ -1,0 +1,5 @@
+venv
+.secrets.yaml
+settings.yaml
+Adafruit_DHT.egg-info
+.idea
