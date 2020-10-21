@@ -4,6 +4,7 @@ from typing import Tuple
 
 import firebase_admin
 import google
+from Adafruit_DHT.common import get_platform
 from firebase_admin import credentials
 from firebase_admin import firestore
 
@@ -49,11 +50,11 @@ class RaspiInterface(object):
     RETRIES = 15
 
     # TODO make generic
-    def __init__(self, raspi_client: Adafruit_DHT, sensor: int, gpio: int):
+    def __init__(self, raspi_client: Adafruit_DHT.DHT11, sensor: int, gpio: int):
         self.gpio = gpio
         self.sensor = sensor
         self.raspi_client = raspi_client
-        self.platform = self.raspi_client.get_platform()
+        self.platform = get_platform()
 
     def apply_settings(self, settings: GrowBoxSettings):
         pass
@@ -93,7 +94,7 @@ if __name__ == '__main__':
     sensor = Adafruit_DHT.DHT11
     db = firestore.client()
     client = DbClient(db)
-    raspi = RaspiInterface(Adafruit_DHT, sensor_model, sensor_gpio)
+    raspi = RaspiInterface(sensor, sensor_model, sensor_gpio)
     while True:
         growbox_settings = client.read_settings()
         raspi.apply_settings(growbox_settings)
