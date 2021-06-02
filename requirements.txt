@@ -36,7 +36,7 @@ requests==2.24.0
 rsa==4.6
 six==1.15.0
 uritemplate==3.0.1
-urllib3==1.25.11
+urllib3==1.26.5
 virtualenv==20.0.35
 virtualenv-clone==0.5.4
 yarl==1.6.2
